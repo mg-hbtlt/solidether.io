@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Profile | Solid Ether</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<!-- Toggle bar for language and theme -->
+<div id="toggle-bar">
+    <!-- Language -->
+    <button id="btn-en" class="active">EN</button>
+    <button id="btn-de">DE</button>
+    <!-- Theme -->
+    <button id="btn-dark" class="active">🌙</button>
+    <button id="btn-light">☀️</button>
+</div>
+
+<header>
+    <span>// solidether.io/profile</span><span class="cursor"></span>
+</header>
+
+<!-- ================= ENGLISH ================= -->
+<section id="about-en" data-lang="en">
+    <h2>About Me</h2>
+    <p class="card">
+        Hi, I'm <strong>MG</strong>, an IT professional specializing in cloud infrastructure, automation, and full‑stack development. I build resilient systems and love shipping clean, maintainable code.
+    </p>
+</section>
+
+<section id="skills-en" data-lang="en">
+    <h2>Skills</h2>
+    <div class="card">
+        <ul>
+            <li>Languages: TypeScript, Go, Python, Bash</li>
+            <li>Cloud: AWS, Azure, GCP</li>
+            <li>Containers &amp; Orchestration: Docker, Kubernetes, Helm</li>
+            <li>CI/CD: GitHub Actions, GitLab CI, ArgoCD</li>
+        </ul>
+    </div>
+</section>
+
+<section id="projects-en" data-lang="en">
+    <h2>Projects</h2>
+    <div class="card">
+        <strong>Solid Ether Homelab</strong> — fully automated Proxmox + k3s cluster documented at <a href="https://github.com/solidether/homelab" target="_blank">GitHub</a>.
+    </div>
+    <div class="card">
+        <strong>Cloud Cost Guard</strong> — a serverless tool that scans AWS accounts and flags wasteful resources in Slack.
+    </div>
+</section>
+
+<section id="contact-en" data-lang="en">
+    <h2>Contact</h2>
+    <div class="card">
+        <p>Email: <a href="mailto:mg@solidether.io">mg@solidether.io</a></p>
+        <p>GitHub: <a href="https://github.com/solidether" target="_blank">@solidether</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/solidether/" target="_blank">linkedin.com/in/solidether</a></p>
+    </div>
+</section>
+
+<!-- ================== GERMAN ================= -->
+<section id="about-de" data-lang="de" style="display:none">
+    <h2>Über mich</h2>
+    <p class="card">
+        Hallo, ich bin <strong>MG</strong>, ein IT‑Profi mit Schwerpunkt auf Cloud‑Infrastruktur, Automatisierung und Full‑Stack‑Entwicklung. Ich baue belastbare Systeme und schreibe gerne sauberen, wartbaren Code.
+    </p>
+</section>
+
+<section id="skills-de" data-lang="de" style="display:none">
+    <h2>Fähigkeiten</h2>
+    <div class="card">
+        <ul>
+            <li>Programmiersprachen: TypeScript, Go, Python, Bash</li>
+            <li>Cloud: AWS, Azure, GCP</li>
+            <li>Container &amp; Orchestrierung: Docker, Kubernetes, Helm</li>
+            <li>CI/CD: GitHub Actions, GitLab CI, ArgoCD</li>
+        </ul>
+    </div>
+</section>
+
+<section id="projects-de" data-lang="de" style="display:none">
+    <h2>Projekte</h2>
+    <div class="card">
+        <strong>Solid Ether Homelab</strong> — Vollautomatisierter Proxmox‑ und k3s‑Cluster, dokumentiert auf <a href="https://github.com/solidether/homelab" target="_blank">GitHub</a>.
+    </div>
+    <div class="card">
+        <strong>Cloud Cost Guard</strong> — ein serverloses Tool, das AWS‑Konten scannt und verschwenderische Ressourcen in Slack meldet.
+    </div>
+</section>
+
+<section id="contact-de" data-lang="de" style="display:none">
+    <h2>Kontakt</h2>
+    <div class="card">
+        <p>E‑Mail: <a href="mailto:mg@solidether.io">mg@solidether.io</a></p>
+        <p>GitHub: <a href="https://github.com/solidether" target="_blank">@solidether</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/solidether/" target="_blank">linkedin.com/in/solidether</a></p>
+    </div>
+</section>
+
+<!-- Footers -->
+<footer data-lang="en">&copy; 2025 MG · Built with ❤️ on GitHub Pages</footer>
+<footer data-lang="de" style="display:none">&copy; 2025 MG · Mit ❤️ gebaut auf GitHub Pages</footer>
+
+<script>
+    /* ---------- Language ---------- */
+    function setLang(lang){
+        document.querySelectorAll('[data-lang]').forEach(el=>{
+            el.style.display = el.dataset.lang===lang?'':'none';
+        });
+        document.getElementById('btn-en').classList.toggle('active',lang==='en');
+        document.getElementById('btn-de').classList.toggle('active',lang==='de');
+        localStorage.setItem('lang',lang);
+    }
+
+    /* ---------- Theme (dark/light) ---------- */
+    function setTheme(theme){
+        document.documentElement.dataset.theme = theme;
+        document.getElementById('btn-dark').classList.toggle('active',theme==='dark');
+        document.getElementById('btn-light').classList.toggle('active',theme==='light');
+        localStorage.setItem('theme',theme);
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+        const savedLang = localStorage.getItem('lang') || 'en';
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setLang(savedLang);
+        setTheme(savedTheme);
+
+        /* Language toggle listeners */
+        document.getElementById('btn-en').addEventListener('click',()=>setLang('en'));
+        document.getElementById('btn-de').addEventListener('click',()=>setLang('de'));
+
+        /* Theme toggle listeners */
+        document.getElementById('btn-dark').addEventListener('click',()=>setTheme('dark'));
+        document.getElementById('btn-light').addEventListener('click',()=>setTheme('light'));
+    });
+</script>
+</body>
+</html>
